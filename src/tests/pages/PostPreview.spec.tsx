@@ -50,7 +50,6 @@ describe("PostPreview Page", () => {
     } as any);
 
     render(<PostPreview post={post} />);
-
     expect(pushMock).toHaveBeenCalledWith("/posts/my-new-post");
   });
 });
