@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import Posts, { getStaticProps } from "../../pages/posts";
-
 import { getPrismicClient } from "../../services/prismic";
 
 jest.mock("../../services/prismic");
@@ -12,13 +11,13 @@ const posts = [
     updatedAt: "04-01-2021",
   },
 ];
-describe("Home Page", () => {
+describe("Posts page", () => {
   it("renders correctly", () => {
     render(<Posts posts={posts} />);
     expect(screen.getByText("My new post")).toBeInTheDocument();
   });
 
-  it("load inicial data", async () => {
+  it("loads initial data", async () => {
     const getPrismicClientMocked = jest.mocked(getPrismicClient);
     getPrismicClientMocked.mockReturnValueOnce({
       query: jest.fn().mockResolvedValueOnce({

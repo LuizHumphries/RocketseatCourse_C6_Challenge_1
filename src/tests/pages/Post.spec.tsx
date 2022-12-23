@@ -17,14 +17,14 @@ const post = [
   },
 ];
 
-describe("Post Page", () => {
+describe("Post page'", () => {
   it("renders correctly", () => {
     render(<Post posts={post} />);
     expect(screen.getByText("My new post")).toBeInTheDocument();
     expect(screen.getByText("Post content")).toBeInTheDocument();
   });
 
-  it("redirect users with no subscription", async () => {
+  it("redirects user if no subscription is found", async () => {
     const getSessionMocked = jest.mocked(getSession);
     getSessionMocked.mockResolvedValueOnce(null);
     const response = await getServerSideProps({
@@ -41,7 +41,7 @@ describe("Post Page", () => {
     );
   });
 
-  it("load inicial data", async () => {
+  it("loads initial data", async () => {
     const getSessionMocked = jest.mocked(getSession);
     const getPrismicClientMocked = jest.mocked(getPrismicClient);
 

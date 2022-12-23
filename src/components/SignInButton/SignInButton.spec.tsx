@@ -20,7 +20,7 @@ describe("SignInButton component", () => {
         user: { name: "John Doe", email: "john.doe@example.com" },
         expires: "fake-expires",
       },
-    });
+    } as any);
     render(<SignInButton />);
     expect(screen.getByText("John Doe")).toBeInTheDocument();
   });

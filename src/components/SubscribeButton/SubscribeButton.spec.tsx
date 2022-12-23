@@ -39,21 +39,30 @@ describe("SubscribeButton component", () => {
     expect(signInMocked).toHaveBeenCalled();
   });
 
-  it("redirects user to full page when authenticated", async () => {
-    const useSessionMocked = mocked(useSession);
-    const useRouterMocked = mocked(useRouter);
+  it("redirects to posts when user already has a subscription", async () => {
+    const useSessionMocked = jest.mocked(useSession);
+    const useRouterMocked = jest.mocked(useRouter);
     const pushMock = jest.fn();
 
-    useSessionMocked.mockReturnValueOnce([
-      { activeSubscription: "fake-active-subscription" },
-      false,
-    ] as any);
+    useSessionMocked.mockReturnValue({
+      data: {
+        user: {
+          name: "John Doe",
+          email: "john.doe@example.com",
+        },
+        activeSubscription: "fake-active-subscription",
+        expires: "fake-expires",
+      },
+    } as any);
 
     useRouterMocked.mockReturnValueOnce({
       push: pushMock,
     } as any);
 
-    render(<Post post={post} />);
+    render(<SubscribeButton />);
+    const subscribeButton = screen.getByText("Subscribe Now");
+    fireEvent.click(subscribeButton);
 
-    expect(pushMock).toHaveBeenCalledWith("/posts/my-new-post");
+    expect(pushMock).toHaveBeenCalledWith("/posts");
   });
+});
