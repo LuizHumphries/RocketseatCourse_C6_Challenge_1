@@ -41,6 +41,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).send(`Webhook error: ${err.message}`);
     }
 
+    console.log(event);
     const { type } = event;
     if (relevantEvents.has(type)) {
       try {
