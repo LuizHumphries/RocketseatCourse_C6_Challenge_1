@@ -19,9 +19,9 @@ export const config = {
 };
 
 const relevantEvents = new Set([
-  "checkout.session.completed",
   "customer.subscription.updated",
   "customer.subscription.deleted",
+  "checkout.session.completed",
 ]);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
