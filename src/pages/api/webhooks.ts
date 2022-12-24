@@ -30,7 +30,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const secret = req.headers["stripe-signature"];
 
     let event: Stripe.Event;
-    console.log(event);
 
     try {
       event = stripe.webhooks.constructEvent(
